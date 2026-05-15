@@ -192,7 +192,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1502662444469-7e717985bbf6?w=1600&q=80');
+      background-image: url('https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=1600&q=80');
       background-size: cover;
       background-position: center;
       z-index: 0;
@@ -201,12 +201,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(10,10,10,0.75) 0%,
-        rgba(10,10,10,0.55) 40%,
-        rgba(10,10,10,0.70) 100%
-      );
+      background: rgba(255,255,255,0.08);
     }
 
     /* Radial glow — gold tinted */
@@ -234,6 +229,10 @@
       position: relative;
       z-index: 2;
       max-width: 860px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
     }
 
@@ -249,7 +248,9 @@
       font-size: clamp(2.8rem, 5.5vw, 4.5rem);
       color: var(--dark-700);
       margin-bottom: 4px;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.15);
+      text-shadow:
+        0 1px 10px rgba(0,0,0,0.25),
+        0 2px 4px rgba(0,0,0,0.15);
     }
     .hero-logo-tree {
       font-family: var(--font-display);
@@ -260,16 +261,18 @@
       color: var(--dark-700);
       line-height: 0.85;
       text-shadow:
-        0 0 12px rgba(201,168,76,0.7),
-        0 0 4px rgba(201,168,76,0.9);
+        0 0 16px rgba(201,168,76,0.85),
+        0 0 6px rgba(201,168,76,1),
+        0 2px 6px rgba(0,0,0,0.3);
     }
     .hero-logo-sub {
       font-family: var(--font-body);
       font-size: 0.78rem;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(242,235,217,0.65);
+      color: rgba(255,255,255,0.88);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.5), 0 2px 3px rgba(0,0,0,0.3);
       margin-top: 16px;
     }
 
@@ -277,17 +280,19 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(201,168,76,0.12);
-      border: 1px solid rgba(201,168,76,0.35);
-      color: var(--gold);
+      background: rgba(242,235,217,0.92);
+      border: 1px solid rgba(201,168,76,0.5);
+      color: var(--dark-700);
       padding: 8px 18px;
       border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-size: 0.78rem;
+      font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       margin-bottom: 28px;
+      margin-top: 20px;
       animation: fadeUp 0.7s ease 0.2s both;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.25);
     }
     .hero-badge svg { width: 14px; height: 14px; }
 
@@ -297,10 +302,11 @@
       font-weight: 800;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: var(--cream);
+      color: #ffffff;
       line-height: 1.05;
       margin-bottom: 20px;
       animation: fadeUp 0.7s ease 0.3s both;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.4);
     }
     .hero h1 em {
       font-style: normal;
@@ -309,11 +315,12 @@
 
     .hero-sub {
       font-size: clamp(1rem, 2vw, 1.2rem);
-      color: rgba(242,235,217,0.72);
+      color: rgba(255,255,255,0.80);
       max-width: 560px;
       margin: 0 auto 40px;
       line-height: 1.65;
       animation: fadeUp 0.7s ease 0.4s both;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.45), 0 2px 4px rgba(0,0,0,0.3);
     }
 
     .hero-actions {
@@ -378,8 +385,9 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      color: rgba(242,235,217,0.6);
+      color: rgba(255,255,255,0.75);
       font-size: 0.875rem;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.4);
     }
     .trust-item svg { color: var(--green-light); width: 18px; height: 18px; flex-shrink: 0; }
     .trust-sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(242,235,217,0.3); }
@@ -394,12 +402,13 @@
       flex-direction: column;
       align-items: center;
       gap: 8px;
-      color: rgba(242,235,217,0.4);
+      color: rgba(255,255,255,0.55);
       font-size: 0.7rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       z-index: 2;
       animation: fadeUp 0.7s ease 0.8s both;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
     }
     .hero-scroll svg {
       width: 20px; height: 20px;
@@ -1186,13 +1195,11 @@
     <div class="hero-glow" aria-hidden="true"></div>
 
     <div class="hero-content">
-<!-- Logo mark -->
       <div class="hero-logo reveal">
         <span class="hero-logo-eau">Eau Claire</span>
         <span class="hero-logo-tree">Tree Service</span>
         <span class="hero-logo-sub">Trust Your Trees to Us &bull; Family Owned &amp; Operated Since 1964</span>
       </div>
-
       <div class="hero-badge">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
         Eau Claire's Tree Experts
