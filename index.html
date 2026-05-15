@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eau Claire Tree Service LLC — Professional Tree Removal & Stump Grinding</title>
+  <meta name="description" content="Eau Claire Tree Service LLC offers professional tree removal, stump grinding, tree trimming, and Ash Borer treatments in Eau Claire, Altoona, and Chippewa Falls. Fully licensed & insured. Free estimates.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=DM+Sans:wght@400;500;600&family=Great+Vibes&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ======================== */
+    /* DESIGN TOKENS            */
+    /* ======================== */
+    :root {
+      /* Tree Service Palette — extracted from truck logo */
+      /* Navy blue (TREE SERVICE text) + Gold (outline accent) + White sign */
+      --black:        #0a0a0a;
+      --dark-800:     #0f1623;
+      --dark-700:     #1a2536;
+      --navy:         #1a2a4a;
+      --navy-light:   #243656;
+      --gold:         #c9a84c;
+      --gold-light:   #d4bc6a;
+      --gold-dark:    #a8893a;
+      --cream:        #F2EBD9;
+      --cream-soft:   #f7f0e3;
+      --cream-white:  #FDFCF8;
+      --green:        #2D5A27;
+      --green-light:  #3a7033;
+
+      /* Typography */
+      --font-script:   'Great Vibes', cursive;
+      --font-display:  'Barlow Condensed', sans-serif;
+      --font-body:     'DM Sans', system-ui, sans-serif;
+
+      /* Spacing */
+      --section-padding: clamp(60px, 10vw, 110px) 20px;
+
+      /* Radius */
+      --radius-sm:  6px;
+      --radius-md:  12px;
+      --radius-lg:  18px;
+      --radius-xl:  28px;
+
+      /* Section dark/light */
+      --bg-light:      #F2EBD9;
+      --bg-white:      #ffffff;
+      --bg-dark:       #0f1623;
+      --bg-card:       #ffffff;
+    }
+
+    /* ======================== */
+    /* RESET & BASE             */
+    /* ======================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--dark-700);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* Grain texture */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.035;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      z-index: 9998;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ======================== */
+    /* SCROLL REVEAL             */
+    /* ======================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ======================== */
+    /* NAVBAR                    */
+    /* ======================== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      /* Hidden on load — shown via JS */
+      transform: translateY(-100%);
+    }
+    .navbar.scrolled {
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+      transform: translateY(0);
+    }
+    .navbar.visible { transform: translateY(0); }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .nav-logo-eau {
+      font-family: var(--font-script);
+      font-size: 1rem;
+      color: var(--cream);
+      margin-bottom: 1px;
+    }
+    .nav-logo-tree {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--cream);
+      line-height: 1;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-phone {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--cream);
+      transition: color 0.2s;
+    }
+    .nav-phone svg { color: var(--gold); flex-shrink: 0; }
+    .nav-phone:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover {
+      background: var(--gold-dark);
+      transform: scale(1.03);
+    }
+
+    /* ======================== */
+    /* HERO                      */
+    /* ======================== */
+    .hero {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px 60px;
+      position: relative;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    /* Background image */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1502662444469-7e717985bbf6?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(10,10,10,0.75) 0%,
+        rgba(10,10,10,0.55) 40%,
+        rgba(10,10,10,0.70) 100%
+      );
+    }
+
+    /* Radial glow — gold tinted */
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -60%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Ken Burns */
+    .hero-bg {
+      animation: kenBurns 22s ease-in-out infinite alternate;
+    }
+    @keyframes kenBurns {
+      from { transform: scale(1); }
+      to   { transform: scale(1.06); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+    }
+
+    /* Logo mark */
+    .hero-logo {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+    .hero-logo-eau {
+      font-family: var(--font-script);
+      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+      color: var(--cream);
+      margin-bottom: 4px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .hero-logo-tree {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #ffffff;
+      line-height: 0.85;
+      text-shadow: 0 3px 24px rgba(0,0,0,0.4);
+    }
+    .hero-logo-sub {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(242,235,217,0.65);
+      margin-top: 16px;
+    }
+
+/* Logo mark */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.35);
+      color: var(--gold);
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+    .hero-badge svg { width: 14px; height: 14px; }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--cream);
+      line-height: 1.05;
+      margin-bottom: 20px;
+      animation: fadeUp 0.7s ease 0.3s both;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(242,235,217,0.72);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+      animation: fadeUp 0.7s ease 0.4s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.7s ease 0.5s both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 0 0 var(--gold-glow);
+    }
+    .btn-primary:hover {
+      background: var(--gold-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--gold-glow);
+    }
+    .btn-primary svg { width: 18px; height: 18px; }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 2px solid rgba(242,235,217,0.4);
+      color: var(--cream);
+      padding: 14px 28px;
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      font-weight: 600;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: var(--cream);
+      background: rgba(242,235,217,0.08);
+      transform: translateY(-2px);
+    }
+    .btn-outline svg { width: 18px; height: 18px; }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 48px;
+      animation: fadeUp 0.7s ease 0.65s both;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(242,235,217,0.6);
+      font-size: 0.875rem;
+    }
+    .trust-item svg { color: var(--green-light); width: 18px; height: 18px; flex-shrink: 0; }
+    .trust-sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(242,235,217,0.3); }
+
+    /* Scroll indicator */
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(242,235,217,0.4);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      z-index: 2;
+      animation: fadeUp 0.7s ease 0.8s both;
+    }
+    .hero-scroll svg {
+      width: 20px; height: 20px;
+      animation: bounceDown 2s ease infinite;
+    }
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); opacity: 0.6; }
+      50% { transform: translateY(6px); opacity: 1; }
+    }
+
+    /* ======================== */
+    /* TRUST BAR                 */
+    /* ======================== */
+    .trustbar {
+      background: var(--green);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .trustbar-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--cream);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .trustbar-item svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .trustbar-sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(242,235,217,0.35); }
+
+    /* ======================== */
+    /* SERVICES                  */
+    /* ======================== */
+    .services {
+      padding: var(--section-padding);
+      background: var(--cream);
+    }
+    .services-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 56px;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--dark-700);
+      line-height: 0.95;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: rgba(28,22,16,0.6);
+      line-height: 1.65;
+    }
+
+    /* Bento grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      gap: 20px;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .svc-card {
+      background: var(--bg-white);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      border: 1px solid rgba(61,41,20,0.08);
+      box-shadow: 0 4px 20px rgba(61,41,20,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .svc-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--green);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .svc-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(61,41,20,0.12);
+    }
+    .svc-card:hover::before { transform: scaleX(1); }
+
+    /* Primary card spans 2 cols */
+    .svc-card.primary {
+      grid-column: span 2;
+      padding: 44px 48px;
+      background: var(--dark-700);
+      color: var(--cream);
+      border-color: transparent;
+    }
+    .svc-card.primary::before {
+      background: var(--gold);
+      transform: scaleX(1);
+    }
+    .svc-card.primary .svc-icon { background: rgba(201,168,76,0.12); color: var(--gold); }
+    .svc-card.primary .svc-title { color: var(--cream); }
+    .svc-card.primary .svc-desc { color: rgba(242,235,217,0.65); }
+    .svc-card.primary .svc-tag { background: var(--gold); color: #fff; }
+
+    .svc-icon {
+      width: 52px; height: 52px;
+      background: rgba(45,90,39,0.1);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green);
+      flex-shrink: 0;
+    }
+    .svc-icon svg { width: 26px; height: 26px; }
+
+    .svc-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(45,90,39,0.1);
+      color: var(--green);
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      align-self: flex-start;
+    }
+
+    .svc-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--dark-700);
+      line-height: 1.15;
+    }
+
+    .svc-desc {
+      font-size: 0.9375rem;
+      color: rgba(28,22,16,0.6);
+      line-height: 1.7;
+    }
+
+    .svc-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-top: auto;
+      transition: gap 0.2s;
+    }
+    .svc-card:hover .svc-cta { gap: 10px; }
+    .svc-card.primary .svc-cta { color: var(--gold); }
+
+    /* ======================== */
+    /* WHY CHOOSE US             */
+    /* ======================== */
+    .why {
+      padding: var(--section-padding);
+      background: var(--dark-700);
+      position: relative;
+      overflow: hidden;
+    }
+    .why-bg-texture {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.04;
+    }
+
+    .why-header {
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto 60px;
+      position: relative;
+    }
+    .why .section-label { color: var(--green-light); }
+    .why .section-title { color: var(--cream); font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: 0.02em; text-transform: uppercase; line-height: 0.95; }
+    .why .section-sub { color: rgba(242,235,217,0.55); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .why-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(242,235,217,0.08);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .why-card:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(242,235,217,0.15);
+      transform: translateY(-3px);
+    }
+
+    .why-icon {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .why-icon.green { background: rgba(45,90,39,0.25); color: var(--green-light); }
+    .why-icon.gold-bg { background: rgba(201,168,76,0.12); color: var(--gold); }
+    .why-icon svg { width: 24px; height: 24px; }
+
+    .why-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+
+    .why-text {
+      font-size: 0.9rem;
+      color: rgba(242,235,217,0.55);
+      line-height: 1.7;
+    }
+
+    /* ======================== */
+    /* ABOUT / AREA              */
+    /* ======================== */
+    .about {
+      padding: var(--section-padding);
+      background: var(--cream);
+    }
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .about-left {}
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .about-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 900;
+      color: var(--dark-700);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .about-title span { color: var(--green); }
+
+    .about-text {
+      font-size: 1.025rem;
+      color: rgba(28,22,16,0.65);
+      line-height: 1.75;
+    }
+
+    /* Stats row */
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .stat-box {
+      background: var(--dark-700);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(242,235,217,0.55);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* Feature list */
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .feature-check {
+      width: 22px; height: 22px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .feature-check svg { width: 12px; height: 12px; color: #fff; }
+    .feature-text {
+      font-size: 0.9375rem;
+      color: rgba(28,22,16,0.75);
+      line-height: 1.5;
+    }
+
+    /* Map/location box */
+    .area-box {
+      background: var(--dark-700);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .area-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--cream);
+    }
+    .area-text {
+      font-size: 0.875rem;
+      color: rgba(242,235,217,0.5);
+      line-height: 1.6;
+    }
+    .area-cities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .area-city {
+      background: rgba(242,235,217,0.08);
+      border: 1px solid rgba(242,235,217,0.12);
+      color: rgba(242,235,217,0.75);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* ======================== */
+    /* REVIEWS                   */
+    /* ======================== */
+    .reviews {
+      padding: var(--section-padding);
+      background: var(--cream-soft);
+    }
+    .reviews-header {
+      text-align: center;
+      max-width: 540px;
+      margin: 0 auto 48px;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .google-review-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      border: 1px solid rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .google-review-card:hover {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.11);
+      transform: translateY(-3px);
+    }
+
+    .review-stars {
+      color: #fbbc05;
+      font-size: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .review-text {
+      font-size: 0.9375rem;
+      color: rgba(28,22,16,0.75);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .reviewer-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .reviewer-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .reviewer-name {
+      font-weight: 600;
+      color: var(--dark-700);
+      font-size: 0.875rem;
+    }
+
+    .verified-badge {
+      color: var(--green);
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    .review-time {
+      color: rgba(28,22,16,0.4);
+      font-size: 0.78rem;
+      margin-left: auto;
+    }
+
+    .google-g-icon {
+      position: absolute;
+      bottom: 16px; right: 16px;
+      width: 20px; height: 20px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='20' height='20'%3E%3Cpath fill='%234285F4' d='M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z'/%3E%3Cpath fill='%2334A853' d='M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z'/%3E%3Cpath fill='%23FBBC05' d='M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z'/%3E%3Cpath fill='%23EA4335' d='M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    /* ======================== */
+    /* CTA SECTION               */
+    /* ======================== */
+    .cta-section {
+      padding: var(--section-padding);
+      background: var(--green);
+      text-align: center;
+    }
+    .cta-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+.cta-section .section-title { color: var(--cream); font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: 0.02em; text-transform: uppercase; line-height: 0.95; }
+    .cta-section .section-sub { color: rgba(242,235,217,0.65); margin-bottom: 8px; }
+
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .cta-phone {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 900;
+      color: var(--cream);
+      transition: color 0.2s;
+    }
+    .cta-phone svg { color: var(--gold); width: 26px; height: 26px; }
+    .cta-phone:hover { color: rgba(242,235,217,0.75); }
+
+    .btn-white-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 2px solid rgba(242,235,217,0.4);
+      color: var(--cream);
+      padding: 14px 28px;
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      font-weight: 600;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-white-outline:hover {
+      border-color: var(--cream);
+      background: rgba(242,235,217,0.1);
+    }
+
+    /* CTA split layout: form left, direct contact right */
+    .cta-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+      text-align: left;
+    }
+    .cta-form-wrap {}
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(242,235,217,0.7);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(242,235,217,0.2);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(242,235,217,0.35);
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    .form-group select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c9a84c' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+    .form-group select option {
+      background: var(--dark-700);
+      color: var(--cream);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .cta-direct {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: center;
+    }
+    .cta-direct-label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: rgba(242,235,217,0.5);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    /* ======================== */
+    /* FOOTER                    */
+    /* ======================== */
+    .site-footer {
+      background: var(--black);
+      padding: 56px 24px 32px;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(242,235,217,0.08);
+    }
+
+    .footer-brand {}
+    .footer-logo {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 16px;
+    }
+    .footer-logo-eau {
+      font-family: var(--font-script);
+      font-size: 1.3rem;
+      color: rgba(242,235,217,0.6);
+    }
+    .footer-logo-tree {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--cream);
+      line-height: 0.9;
+    }
+
+    .footer-slogan {
+      font-size: 0.875rem;
+      color: rgba(242,235,217,0.4);
+      line-height: 1.6;
+      max-width: 280px;
+    }
+
+    .footer-col-title {
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a {
+      font-size: 0.875rem;
+      color: rgba(242,235,217,0.45);
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--gold); }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .footer-contact-item svg { color: var(--gold); width: 16px; height: 16px; flex-shrink: 0; margin-top: 3px; }
+    .footer-contact-item span { font-size: 0.875rem; color: rgba(242,235,217,0.5); line-height: 1.5; }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: rgba(242,235,217,0.3);
+    }
+    .footer-license {
+      font-size: 0.75rem;
+      color: rgba(242,235,217,0.25);
+    }
+
+    /* ======================== */
+    /* ANIMATIONS                */
+    /* ======================== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ======================== */
+    /* RESPONSIVE                */
+    /* ======================== */
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .svc-card.primary { grid-column: span 2; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .about-stats { grid-template-columns: repeat(3, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .cta-split { grid-template-columns: 2fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .svc-card.primary { grid-column: span 1; }
+      .why-grid { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .hero-actions { flex-direction: column; }
+      .hero-trust { gap: 16px; }
+      .trustbar { gap: 16px; }
+      .cta-split { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======================== -->
+  <!-- NAVBAR                    -->
+  <!-- ======================== -->
+  <nav class="navbar" id="navbar" aria-label="Main navigation">
+    <a href="#" class="nav-logo" aria-label="Eau Claire Tree Service Home">
+      <span class="nav-logo-eau">Eau Claire</span>
+      <span class="nav-logo-tree">Tree Service</span>
+    </a>
+    <div class="nav-actions">
+      <a href="tel:715-834-5239" class="nav-phone" aria-label="Call us">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        715-834-5239
+      </a>
+      <a href="#contact" class="nav-cta">Free Estimate</a>
+    </div>
+  </nav>
+
+  <!-- ======================== -->
+  <!-- HERO                      -->
+  <!-- ======================== -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+
+    <div class="hero-content">
+<!-- Logo mark -->
+      <div class="hero-logo reveal">
+        <span class="hero-logo-eau">Eau Claire</span>
+        <span class="hero-logo-tree">Tree Service</span>
+        <span class="hero-logo-sub">Trust Your Trees to Us &bull; Family Owned &amp; Operated Since 1964</span>
+      </div>
+
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        Eau Claire's Tree Experts
+      </div>
+
+      <h1 id="hero-heading" class="reveal">
+        Professional Tree <em>Removal</em><br>
+        Stump Grinding &amp; Treatment
+      </h1>
+
+      <p class="hero-sub reveal">
+        Full-service tree care for homeowners and properties across Eau Claire, Altoona, and Chippewa Falls. From emergency removals to Ash Borer treatments — we do it right.
+      </p>
+
+      <div class="hero-actions reveal">
+        <a href="#contact" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Get a Free Estimate
+        </a>
+        <a href="tel:715-834-5239" class="btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          715-834-5239
+        </a>
+      </div>
+
+      <div class="hero-trust reveal">
+        <span class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Licensed &amp; Insured
+        </span>
+        <span class="trust-sep" aria-hidden="true"></span>
+        <span class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Customer Satisfaction Guaranteed
+        </span>
+        <span class="trust-sep" aria-hidden="true"></span>
+        <span class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Free Estimates
+        </span>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-scroll" aria-hidden="true">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </section>
+
+  <!-- ======================== -->
+  <!-- TRUST BAR                 -->
+  <!-- ======================== -->
+  <div class="trustbar reveal">
+    <span class="trustbar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Fully Licensed &amp; Insured
+    </span>
+    <span class="trustbar-sep" aria-hidden="true"></span>
+    <span class="trustbar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Residential &amp; Commercial
+    </span>
+    <span class="trustbar-sep" aria-hidden="true"></span>
+    <span class="trustbar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      Complete Cleanup Included
+    </span>
+    <span class="trustbar-sep" aria-hidden="true"></span>
+    <span class="trustbar-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Eau Claire &amp; Surrounding Areas
+    </span>
+  </div>
+
+  <!-- ======================== -->
+  <!-- SERVICES                  -->
+  <!-- ======================== -->
+  <section class="services" id="services" aria-labelledby="services-heading">
+    <header class="services-header reveal">
+      <p class="section-label">What We Do</p>
+      <h2 class="section-title" id="services-heading">Complete Tree Care Services</h2>
+      <p class="section-sub">From emergency storm damage to preventive treatments, we handle every aspect of tree care — with full cleanup on every job.</p>
+    </header>
+
+    <div class="services-grid">
+
+      <!-- Primary: Full Clean Up (spans 2 cols) -->
+      <article class="svc-card primary reveal">
+        <div class="svc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <span class="svc-tag">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          Most Requested
+        </span>
+        <h3 class="svc-title">Full Clean Up Services</h3>
+        <p class="svc-desc">Complete tree removal, trimming, and stump grinding — including onsite brush removal and site clearing. We leave your property cleaner than we found it.</p>
+        <a href="#contact" class="svc-cta">
+          Request a Quote
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <!-- Stump Grinding -->
+      <article class="svc-card reveal">
+        <div class="svc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <h3 class="svc-title">Stump Grinding</h3>
+        <p class="svc-desc">Professional stump removal below ground level so your lawn is smooth and usable. No stumps left behind.</p>
+        <a href="#contact" class="svc-cta">
+          Learn More
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <!-- Tree Trimming -->
+      <article class="svc-card reveal">
+        <div class="svc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v18M18 3v18M6 12h12M3 6c0 6 3 9 9 9s9-3 9-9"/></svg>
+        </div>
+        <h3 class="svc-title">Tree Trimming &amp; Pruning</h3>
+        <p class="svc-desc">Expert pruning to improve tree health, shape, and safety. We remove dead branches and shape canopies properly.</p>
+        <a href="#contact" class="svc-cta">
+          Learn More
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <!-- Ash Borer Treatment -->
+      <article class="svc-card reveal">
+        <div class="svc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <span class="svc-tag" style="background: rgba(201,168,76,0.1); color: var(--gold);">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+          Local Concern
+        </span>
+        <h3 class="svc-title">Ash Borer &amp; Tree Treatments</h3>
+        <p class="svc-desc">With Emerald Ash Borer reaching Eau Claire, preventive treatment is essential. We treat Ash trees and other species for invasive bugs and disease.</p>
+        <a href="#contact" class="svc-cta">
+          Protect Your Trees
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+      <!-- Brush Clearing -->
+      <article class="svc-card reveal">
+        <div class="svc-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3 class="svc-title">Brush Removal &amp; Clearing</h3>
+        <p class="svc-desc">Onsite brush removal and land clearing for properties that need overgrowth cleared, usable, and maintained.</p>
+        <a href="#contact" class="svc-cta">
+          Learn More
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ======================== -->
+  <!-- WHY CHOOSE US             -->
+  <!-- ======================== -->
+  <section class="why" aria-labelledby="why-heading">
+    <div class="why-bg-texture" aria-hidden="true"></div>
+    <header class="why-header reveal">
+      <p class="section-label">Why Us</p>
+      <h2 class="section-title" id="why-heading">We Care About Every Detail</h2>
+      <p class="section-sub">More than just tree removal — we're here to protect your property and give you peace of mind.</p>
+    </header>
+
+    <div class="why-grid">
+
+      <article class="why-card reveal">
+        <div class="why-icon green" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="why-title">Licensed &amp; Fully Insured</h3>
+        <p class="why-text">Our company is licensed and fully insured for your safety. Every job is covered — protecting both your property and our team.</p>
+      </article>
+
+      <article class="why-card reveal">
+        <div class="why-icon gold-bg" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 class="why-title">Satisfaction Guaranteed</h3>
+        <p class="why-text">Your satisfaction is our priority. We start every project with a thorough consultation to understand your goals — and we don't stop until you're 100% happy.</p>
+      </article>
+
+      <article class="why-card reveal">
+        <div class="why-icon green" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 class="why-title">Free, No-Obligation Estimates</h3>
+        <p class="why-text">Call or email us today to set up a time for our professional staff to inspect your property and provide a detailed, honest estimate — at no charge.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ======================== -->
+  <!-- ABOUT / AREA              -->
+  <!-- ======================== -->
+  <section class="about" aria-labelledby="about-heading">
+    <div class="about-inner">
+
+      <div class="about-left reveal">
+        <p class="section-label">About Us</p>
+        <h2 class="about-title" id="about-heading">
+          Professional Tree Care<br>for the <span>Eau Claire</span> Community
+        </h2>
+        <p class="about-text">
+          We specialize in helping clients increase the value and beauty of their properties by promoting the health and well-being of their trees. Whether you need tree removal, stump grinding, trimming, treatments, or expert advice for the health and longevity of your trees — we're here to help.
+        </p>
+        <p class="about-text" style="margin-top: 12px;">
+          Our ultimate goal is to ensure that you are completely satisfied with the end result of your project. We pay special attention to the details of every job and your property to ensure the complete satisfaction of each client.
+        </p>
+
+        <!-- Stats -->
+        <div class="about-stats reveal">
+          <div class="stat-box">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Satisfaction</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">Free</span>
+            <span class="stat-label">Estimates</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">Full</span>
+            <span class="stat-label">Cleanup</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-right">
+
+        <!-- Feature list -->
+        <div class="feature-list reveal">
+          <div class="feature-item">
+            <span class="feature-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span class="feature-text">Licensed and fully insured for your protection</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span class="feature-text">Complete site cleanup on every job — we leave it pristine</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span class="feature-text">Ash Borer and disease treatment for local tree threats</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span class="feature-text">Residential and commercial properties welcome</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span class="feature-text">Thorough consultation before every project begins</span>
+          </div>
+        </div>
+
+        <!-- Service area box -->
+        <div class="area-box reveal">
+          <h3 class="area-title">Service Area</h3>
+          <p class="area-text">Professional tree services for homeowners and businesses across western Wisconsin.</p>
+          <div class="area-cities">
+            <span class="area-city">Eau Claire</span>
+            <span class="area-city">Altoona</span>
+            <span class="area-city">Chippewa Falls</span>
+            <span class="area-city">Lake Altoona</span>
+            <span class="area-city">Fall Creek</span>
+            <span class="area-city">Normalville</span>
+            <span class="area-city">Swannee</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== -->
+  <!-- REVIEWS                   -->
+  <!-- ======================== -->
+  <section class="reviews" aria-labelledby="reviews-heading">
+    <header class="reviews-header reveal">
+      <p class="section-label">Google Reviews</p>
+      <h2 class="section-title" id="reviews-heading">What Our Customers Say</h2>
+      <p class="section-sub">Real reviews from real homeowners across the Eau Claire area.</p>
+    </header>
+
+    <div class="reviews-grid">
+
+      <article class="google-review-card reveal">
+        <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="review-text">"They removed three large dead trees from our yard near Lake Altoona and ground the stumps below ground level. The crew was professional, cleaned up every piece of debris, and left our property looking better than before. Highly recommend."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar" aria-hidden="true">MK</div>
+          <div class="reviewer-info">
+            <span class="reviewer-name">Mike K.</span>
+            <span class="verified-badge">✓ Verified</span>
+          </div>
+          <span class="review-time">Altoona, WI</span>
+        </div>
+        <div class="google-g-icon" aria-label="Google review"></div>
+      </article>
+
+      <article class="google-review-card reveal">
+        <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="review-text">"Called for a free estimate and they came out the next day. The quote was fair and they scheduled the work within a week. Treated our Ash trees for the Ash Borer and explained everything clearly. Good local company that actually cares about their customers."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar" aria-hidden="true">SJ</div>
+          <div class="reviewer-info">
+            <span class="reviewer-name">Sara J.</span>
+            <span class="verified-badge">✓ Verified</span>
+          </div>
+          <span class="review-time">Eau Claire, WI</span>
+        </div>
+        <div class="google-g-icon" aria-label="Google review"></div>
+      </article>
+
+      <article class="google-review-card reveal">
+        <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p class="review-text">"We had storm damage and they came out right away to assess and give us an estimate. They handled the emergency tree removal and had everything cleaned up by the end of the day. Fair pricing and exceptional communication throughout. Will use again."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar" aria-hidden="true">BT</div>
+          <div class="reviewer-info">
+            <span class="reviewer-name">Brad T.</span>
+            <span class="verified-badge">✓ Verified</span>
+          </div>
+          <span class="review-time">Chippewa Falls, WI</span>
+        </div>
+        <div class="google-g-icon" aria-label="Google review"></div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ======================== -->
+  <!-- CTA SECTION + CONTACT FORM -->
+  <!-- ======================== -->
+  <section class="cta-section" id="contact" aria-labelledby="cta-heading">
+    <div class="cta-inner reveal">
+      <p class="section-label" style="color: var(--gold);">Ready to Get Started?</p>
+      <h2 class="section-title" id="cta-heading">Get Your Free Estimate Today</h2>
+      <p class="section-sub">Whether it's a small trimming job or a full tree removal, we'll give you an honest, no-obligation estimate.</p>
+
+      <div class="cta-split">
+
+        <!-- Contact Form -->
+        <div class="cta-form-wrap">
+          <form class="contact-form" action="mailto:info@eauclairetreeservice.com" method="POST" enctype="text/plain">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cf-name">Your Name</label>
+                <input type="text" id="cf-name" name="name" placeholder="John Smith" required>
+              </div>
+              <div class="form-group">
+                <label for="cf-phone">Phone Number</label>
+                <input type="tel" id="cf-phone" name="phone" placeholder="(715) 555-1234">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cf-email">Email Address</label>
+              <input type="email" id="cf-email" name="email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="cf-service">Service Needed</label>
+              <select id="cf-service" name="service">
+                <option value="">Select a service...</option>
+                <option value="Tree Removal">Tree Removal</option>
+                <option value="Stump Grinding">Stump Grinding</option>
+                <option value="Tree Trimming">Tree Trimming</option>
+                <option value="Ash Borer Treatment">Ash Borer Treatment</option>
+                <option value="Brush Removal">Brush Removal</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="cf-message">Tell Us About Your Project</label>
+              <textarea id="cf-message" name="message" placeholder="Describe what you need done — location, approximate size, any relevant details..." rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Direct Contact -->
+        <div class="cta-direct">
+          <p class="cta-direct-label">Or contact us directly:</p>
+          <a href="tel:715-834-5239" class="cta-phone" aria-label="Call us at 715-834-5239">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            715-834-5239
+          </a>
+          <a href="mailto:info@eauclairetreeservice.com" class="btn-white-outline" style="width: 100%; justify-content: center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            info@eauclairetreeservice.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== -->
+  <!-- FOOTER                    -->
+  <!-- ======================== -->
+  <footer class="site-footer" aria-label="Site footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="footer-logo-eau">Eau Claire</span>
+            <span class="footer-logo-tree">Tree Service</span>
+          </div>
+          <p class="footer-slogan">Professional tree removal, stump grinding, and treatments for properties across Eau Claire, Altoona, and Chippewa Falls. Licensed, insured, and dedicated to your satisfaction.</p>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Services</h3>
+          <ul>
+            <li><a href="#services">Tree Removal</a></li>
+            <li><a href="#services">Stump Grinding</a></li>
+            <li><a href="#services">Tree Trimming</a></li>
+            <li><a href="#services">Ash Borer Treatment</a></li>
+            <li><a href="#services">Brush Removal</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col-title">Contact</h3>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>715-834-5239</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>info@eauclairetreeservice.com</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Eau Claire, WI</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 Eau Claire Tree Service LLC. All rights reserved.</p>
+        <p class="footer-license">Fully Licensed &amp; Insured | Eau Claire, Wisconsin</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================== -->
+  <!-- SCRIPTS                   -->
+  <!-- ======================== -->
+  <script>
+    /* Navbar: show after 80px scroll */
+    (function () {
+      var navbar = document.getElementById('navbar');
+      var lastY = 0;
+      var hidden = true;
+
+      window.addEventListener('scroll', function () {
+        var y = window.scrollY;
+
+        if (y > 80) {
+          navbar.classList.add('scrolled');
+          navbar.classList.add('visible');
+          hidden = false;
+        } else {
+          navbar.classList.remove('scrolled');
+          navbar.classList.remove('visible');
+          hidden = true;
+        }
+
+        lastY = y;
+      }, { passive: true });
+    })();
+
+    /* Scroll reveal via IntersectionObserver */
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!els.length) return;
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      els.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+
+</body>
+</html>
